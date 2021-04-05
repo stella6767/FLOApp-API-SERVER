@@ -22,11 +22,7 @@ public class StorageController {
 
 	private final StorageService storageService;
 	
-	@GetMapping("/storage/test")
-		public CMRespDto<?> storageTest() {
-			return new CMRespDto<>(1, "성공", "테스트 데이터 전달");
-		}
-	
+
 	@GetMapping("/storage")
 	public CMRespDto<?> storageFindAll(){
 		List<Storage> storagesList = storageService.전체찾기();
@@ -42,7 +38,8 @@ public class StorageController {
 	
 	@DeleteMapping("/storage/{id}")
 	public CMRespDto<?> storageDelete(@PathVariable int id){
+		System.out.println("id:  " + id);
 		storageService.한건삭제하기(id);
-		return new CMRespDto<>(1, "성공", "삭제하기 성공");
+		return new CMRespDto<>(1, "성공", "");
 	}
 }

@@ -15,7 +15,7 @@ public class StorageSaveDto {
 	private String title;
 	
 	public Storage toEntity() {
-		Storage storage = new Storage().builder()
+		Storage storage = Storage.builder()
 				.title(title)
 				.build();
 		

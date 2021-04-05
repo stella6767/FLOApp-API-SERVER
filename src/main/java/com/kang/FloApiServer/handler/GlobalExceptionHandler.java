@@ -35,6 +35,13 @@ public class GlobalExceptionHandler {
 		public CMRespDto<?> sQLException(Exception e){
 			return new CMRespDto<>(-1, "실패4", null);
 		}
+		
+		@ExceptionHandler(value = SecurityException.class)
+		public CMRespDto<?> securityException(Exception e){
+			return new CMRespDto<>(-1, "시큐리티 관련 에러발생", null);
+		}
+		
+
 
 
 }

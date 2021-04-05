@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kang.FloApiServer.domain.song.Song;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class PlaySong {
 	@JoinColumn(name = "songId")
 	private Song song;
 	
+
 	@CreationTimestamp 
 	private Timestamp createDate;
 }

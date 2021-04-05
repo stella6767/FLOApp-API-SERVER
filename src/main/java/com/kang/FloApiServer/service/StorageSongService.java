@@ -17,17 +17,27 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class StorageSongService {
 
-	private final StorageSongRepository storageSongRepo;
+	private final StorageSongRepository storageSongRepository;
 	
 	@Transactional
-	public void 노래담기(StorageSong storageSong) {
-		storageSongRepo.save(storageSong);
+	public StorageSong 노래담기(StorageSong storageSong) {
+		
+		return storageSongRepository.save(storageSong);
+		
 	}
 	
+	
 	@Transactional
-	public List<StorageSong> 노래찾기(int id){
-		List<StorageSong> storageSongsEntity = storageSongRepo.findAllSong(id);
+	public List<StorageSong> 노래찾기(int storageId, int userId){
+		List<StorageSong> storageSongsEntity = storageSongRepository.findByStroageId(storageId, userId);
 		return storageSongsEntity;
 	}
+	
+	
+	public void 노래삭제(int id) {
+		storageSongRepository.deleteById(id);
+	}
+	
+
 
 }

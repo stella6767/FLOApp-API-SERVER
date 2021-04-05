@@ -30,7 +30,7 @@ public class PlaySongController { //내 재생목록
 	@PostMapping("/playSong")
 	public CMRespDto<?> save(@RequestBody PlaySongSaveReqDto playSongSaveReqDto) {
 		//System.out.println("재생목록에 곡 추가"+ song);
-		//System.out.println("재생목록에 곡 추가"+ playSongSaveReqDto);
+		System.out.println("재생목록에 곡 추가"+ playSongSaveReqDto);
 			
 		return new CMRespDto<>(1, "성공", playSongService.노래추가(playSongSaveReqDto.toEntity()));
 	}
@@ -40,7 +40,6 @@ public class PlaySongController { //내 재생목록
 	public CMRespDto<?> deleteById(@PathVariable int id){
 		
 		System.out.println("id:  " + id);
-		
 		playSongService.노래삭제(id);
 		
 		return new CMRespDto<>(1, "성공", "");
