@@ -27,15 +27,23 @@ public class StorageSongService {
 	}
 	
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<StorageSong> 노래찾기(int storageId, int userId){
 		List<StorageSong> storageSongsEntity = storageSongRepository.findByStroageId(storageId, userId);
 		return storageSongsEntity;
 	}
 	
 	
-	public void 노래삭제(int id) {
+	@Transactional
+	public int 노래삭제(int id) {
+		
+		StorageSong storageSongEntity = storageSongRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("id를 찾을 수 없습니다.");
+		});
+		
 		storageSongRepository.deleteById(id);
+		
+		return 1;
 	}
 	
 

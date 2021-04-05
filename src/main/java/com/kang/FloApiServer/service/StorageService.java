@@ -32,7 +32,14 @@ public class StorageService {
 	}
 	
 	@Transactional
-	public void 한건삭제하기(int id) {
+	public int 한건삭제하기(int id) {
+		Storage storageEntity = storageRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("id를 찾을 수 없습니다.");
+		});
+		
+		
 		storageRepository.deleteById(id);
+		
+		return 1;
 	}
 }

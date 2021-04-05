@@ -33,5 +33,14 @@ public class UserService {
 	}//더티체킹
 	
 	
+	@Transactional(readOnly = true)
+	public User 유저정보(int id) {
+		
+		return userRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("id를 찾을 수 없습니다.");
+		});
+		
+	}
+	
 
 }

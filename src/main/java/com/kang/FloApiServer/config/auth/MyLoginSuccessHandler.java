@@ -30,6 +30,17 @@ public class MyLoginSuccessHandler implements AuthenticationSuccessHandler {
 //      String username = userDetails.getUsername();
 //      String password = userDetails.getPassword();
         
+        System.out.println("=========================");
+        //System.out.println(response.getHeader(""));
+//        System.out.println(response.getHeader("Cookie"));
+//        
+//        System.out.println(request.getContentType());
+//        System.out.println(request.getCookies());
+//        //System.out.println(request.getSession().getSessionContext());
+        
+               
+       
+        
         PrincipalDetails principalDetails = (PrincipalDetails)userDetails;
         
         int id = principalDetails.getId();
@@ -44,11 +55,17 @@ public class MyLoginSuccessHandler implements AuthenticationSuccessHandler {
         CMRespDto<?> cmRespDto = new CMRespDto<>(1, "login success", authLoginRespDto);
         
         
+      
       //여기서는 @RestController 안 걸려있으니 직접 json파싱하고 PrintWriter로 데이터 리턴해줘야됨. 2가지 역할 
-        
+        System.out.println(request.getHeader("Cookie"));
+        //String JsessionId = request.getHeader("Cookie"); //아하 애초에 여기서 할 필요가 없었구나..
+        //String JsessionCookie = JsessionId.split("=")[1];
+        //System.out.println(JsessionCookie);
+        //response.setHeader("JSESSIONID", JsessionCookie);
         ObjectMapper mapper = new ObjectMapper();
         String jsonDto = mapper.writeValueAsString(cmRespDto);
         System.out.println(jsonDto);
+        
         PrintWriter out = response.getWriter();
 
         out.print(jsonDto);
