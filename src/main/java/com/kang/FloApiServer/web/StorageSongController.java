@@ -41,13 +41,11 @@ public class StorageSongController {
 			
 		List<StorageSong> storageSongEntity = storageSongService.노래찾기(storageId, userId);
 
-		List<Song> songs = new ArrayList<>();
-		
-		for (StorageSong storagesong : storageSongEntity) {  //아 몰라 귀찮아서 그냥 이렇게 짜겠음
-			songs.add(storagesong.getSong());
-		}
-		
-		System.out.println(songs);
+//		List<Song> songs = new ArrayList<>();	
+//		for (StorageSong storagesong : storageSongEntity) {  //아 몰라 귀찮아서 그냥 이렇게 짜겠음
+//			songs.add(storagesong.getSong());
+//		}
+//		System.out.println(songs);
 		
 		return new CMRespDto<>(1, "성공", storageSongEntity);
 	}
