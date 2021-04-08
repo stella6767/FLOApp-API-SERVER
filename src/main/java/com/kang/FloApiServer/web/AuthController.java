@@ -1,5 +1,7 @@
 package com.kang.FloApiServer.web;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class AuthController {
 	
 	
 	@PostMapping("/join")
-	public CMRespDto<?> join(@RequestBody AuthJoinReqDto authJoinReqDto) {	
+	public CMRespDto<?> join(@Valid @RequestBody AuthJoinReqDto authJoinReqDto, BindingResult bindingResult) {	
 		System.out.println(authJoinReqDto);
 		
 		authService.회원가입(authJoinReqDto.toEntity());

@@ -2,6 +2,9 @@ package com.kang.FloApiServer.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +34,7 @@ public class StorageController {
 	}
 	
 	@PostMapping("/storage") //이하동문
-	public CMRespDto<?> storageSave(@RequestBody StorageSaveDto storageSaveDto){
+	public CMRespDto<?> storageSave(@Valid @RequestBody StorageSaveDto storageSaveDto, BindingResult bindingResult){
 		Storage storageEntity =  storageService.저장하기(storageSaveDto.toEntity());
 		return new CMRespDto<>(1, "성공", storageEntity);
 	}
