@@ -20,7 +20,8 @@ public class MyBatch {
 	private final ErrorLogRepository errorLogRepository;
 	
 	
-	@Scheduled(fixedDelay = 1000*60*10) //Cron 정기적 실행
+	//@Scheduled(fixedDelay = 1000*60*10)
+	@Scheduled(fixedDelay = 10*10*10) //Cron 정기적 실행
 	public void excute() {
 		List<String> exList = exceptionList.getExList();
 		//DB에 insert 하기, 

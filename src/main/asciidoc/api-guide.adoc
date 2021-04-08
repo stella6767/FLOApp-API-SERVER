@@ -1,0 +1,63 @@
+= REST Service API Guide
+:doctype: FLO
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+= Resources
+
+== FLO REST Service
+
+=== Accessing the FLO GET with provided content
+
+==== Request structure
+
+== ㅡ플레이송 저장 [POST]
+
+
+include::{snippets}/flo-api-controller-integre-test/play-song-save_테스트/curl-request.adoc[]
+
+=== 요청 구조
+
+include::{snippets}/flo-api-controller-integre-test/play-song-save_테스트/http-request.adoc[]
+
+==== 응답 구조
+
+include::{snippets}/flo-api-controller-integre-test/play-song-save_테스트/http-response.adoc[]
+
+=== 요청 바디
+
+include::{snippets}/flo-api-controller-integre-test/play-song-save_테스트/request-body.adoc[]
+
+==== 응답 바디
+
+include::{snippets}/flo-api-controller-integre-test/play-song-save_테스트/response-body.adoc[]
+
+
+
+== 플레이송 삭제 [DELETE]
+
+글 수정
+
+
+include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/curl-request.adoc[]
+
+=== 요청 구조
+
+include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/http-request.adoc[]
+
+==== 응답 구조
+
+include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/http-response.adoc[]
+
+=== 요청 바디
+
+include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/request-body.adoc[]
+
+==== 응답 바디
+
+include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/response-body.adoc[]
+
+

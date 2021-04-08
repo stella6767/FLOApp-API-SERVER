@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.kang.FloApiServer.config.auth.AuthFailureHandler;
 import com.kang.FloApiServer.config.auth.MyLoginSuccessHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration 
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
+
 	
 	@Bean
 	public BCryptPasswordEncoder encode() {
@@ -25,15 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();   
+		http.csrf().disable();
+//		http.addFilterBefore(loginFailFiler, 
+//                UsernamePasswordAuthenticationFilter.class);
 		http.authorizeRequests()
 		.antMatchers("/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") //일단은 다 열도록
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')") //관리자만 들어올 수 있도록	    
 		.anyRequest().permitAll()
 		.and()
 		.formLogin()//x-www-form-urlencoded, formlogin()은 json 던지면 못 받음
-		.loginPage("/loginForm")//리다이렉션
-		.loginProcessingUrl("/login")//x-www-form-urlencoded, 시큐리티가 post로 온 /login 이라는 주소가 들어오면 낚아챔
+		.loginProcessingUrl("/login")
+		//x-www-form-urlencoded, 시큐리티가 post로 온 /login 이라는 주소가 들어오면 낚아챔
+		.failureHandler(new AuthFailureHandler()) 
 		.successHandler(new MyLoginSuccessHandler());
 		
 	}

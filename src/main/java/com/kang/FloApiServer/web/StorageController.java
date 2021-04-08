@@ -23,14 +23,14 @@ public class StorageController {
 	private final StorageService storageService;
 	
 
-	@GetMapping("/storage")
+	@GetMapping("/storage")   //원래는 유저아이디별로 찾아야 되는데 귀찮다.. 생략하자..
 	public CMRespDto<?> storageFindAll(){
 		List<Storage> storagesList = storageService.전체찾기();
 		System.out.println("데이터 확인 : " + storagesList);
 		return new CMRespDto<>(1, "성공", storagesList);
 	}
 	
-	@PostMapping("/storage")
+	@PostMapping("/storage") //이하동문
 	public CMRespDto<?> storageSave(@RequestBody StorageSaveDto storageSaveDto){
 		Storage storageEntity =  storageService.저장하기(storageSaveDto.toEntity());
 		return new CMRespDto<>(1, "성공", storageEntity);

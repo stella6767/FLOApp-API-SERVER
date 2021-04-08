@@ -55,7 +55,7 @@ public class SongController {
 	@GetMapping("/song/search")
 	public CMRespDto<?> findByKeyword(String keyword){
 		
-		System.out.println("카테고리" + keyword);	
+		System.out.println("키워드" + keyword);	
 		List<Song> searchSongList = songService.검색리스트(keyword);
 	
 		return new CMRespDto<>(1, "성공", searchSongList);

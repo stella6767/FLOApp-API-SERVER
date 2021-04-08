@@ -17,18 +17,22 @@ public class PlaySongService {
 	private final PlaySongRepository playSongRepository;
 	
 	@Transactional(readOnly = true)
-	public List<PlaySong> 전체찾기() {
-		return playSongRepository.findAll();
+	public List<PlaySong> 전체찾기(int userId) {
+		//return playSongRepository.findAll();
+	
+		return playSongRepository.mfindPlaysongAllByUserId(userId);
 	}
 	
 	@Transactional
 	public PlaySong 노래추가(PlaySong playSong) {
 		
-		PlaySong playSongEntity = playSongRepository.mCheckContain(playSong.getSong().getId());
+		System.out.println("송아이디" + playSong.getSong().getId());
+		
+		PlaySong playSongEntity = playSongRepository.mCheckContain(playSong.getUser().getId(), playSong.getSong().getId());
 		
 		if(playSongEntity == null) {  //중복방지..
-			playSongRepository.save(playSong);
-			return playSong;
+			return playSongRepository.save(playSong);
+			
 		}
 				
 		return playSongEntity;

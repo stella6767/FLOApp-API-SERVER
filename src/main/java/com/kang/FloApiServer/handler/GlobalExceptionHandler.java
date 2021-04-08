@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
 		@ExceptionHandler(value = IllegalArgumentException.class)
 		public CMRespDto<?> illegalArgumentException(Exception e){
 			exceptionList.addExceptionList(e.getMessage());
-			return new CMRespDto<>(-1,"실패2",null);
+			return new CMRespDto<>(-1,"잘못된 인자가 전달되었습니다.",null);
 		}
 		
 		@ExceptionHandler(value = EmptyResultDataAccessException.class)
@@ -61,23 +61,19 @@ public class GlobalExceptionHandler {
 		}
 		
 
-		@ExceptionHandler(value = AuthenticationException.class)
-		public CMRespDto<?> authenticationException(Exception e){
-			exceptionList.addExceptionList(e.getMessage());
-			return new CMRespDto<>(-1, "인증 에러", null);
-		}
+//		@ExceptionHandler(value = AuthenticationException.class)
+//		public CMRespDto<?> authenticationException(Exception e){
+//			exceptionList.addExceptionList(e.getMessage());
+//			return new CMRespDto<>(-1, "인증 에러", null);
+//		}
+//		
+//		@ExceptionHandler(value = InternalAuthenticationServiceException.class)
+//		public CMRespDto<?> internalAuthenticationServiceException(Exception e){
+//			exceptionList.addExceptionList(e.getMessage());
+//			return new CMRespDto<>(-1, "로그인 중복", null);
+//		}
 		
-		@ExceptionHandler(value = InternalAuthenticationServiceException.class)
-		public CMRespDto<?> internalAuthenticationServiceException(Exception e){
-			exceptionList.addExceptionList(e.getMessage());
-			return new CMRespDto<>(-1, "로그인 중복", null);
-		}
-		
-		@ExceptionHandler(value = Exception.class)
-		public CMRespDto<?> exception(Exception e){ //익셉션 찾기 귀찮다..
-			exceptionList.addExceptionList(e.getMessage());
-			return new CMRespDto<>(-1, "익셉션 터짐", null);
-		}
+
 
 
 

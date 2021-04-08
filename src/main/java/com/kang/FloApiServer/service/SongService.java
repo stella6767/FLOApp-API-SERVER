@@ -32,6 +32,8 @@ public class SongService {
 	@Transactional(readOnly = true)
 	public List<Song> 카테고리리스트(String category){ //나중에 키워드로 get요청해서 안드로이드 어댑터와 동기화
 		List<Song> songList = songRepository.mfindCategory(category);
+		System.out.println("왜 duplicate? :  "+songList.get(1).getTitle());  //junit test 로그 볼려고.
+		
 		return songList;
 	}
 	

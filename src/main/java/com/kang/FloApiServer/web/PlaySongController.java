@@ -20,10 +20,10 @@ public class PlaySongController { //내 재생목록
 	private final PlaySongService playSongService;
 	
 	
-	@GetMapping("/playSong")
-	public CMRespDto<?> findAll() {
+	@GetMapping("/playSong/{id}")
+	public CMRespDto<?> findAll(@PathVariable int id) {
 
-		return new CMRespDto<>(1, "성공", playSongService.전체찾기());
+		return new CMRespDto<>(1, "성공", playSongService.전체찾기(id));
 	}
 	
 	
