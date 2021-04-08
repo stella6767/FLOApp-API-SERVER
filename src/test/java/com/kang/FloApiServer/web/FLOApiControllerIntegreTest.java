@@ -28,7 +28,6 @@ import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
-import org.springframework.restdocs.payload.ResponseFieldsSnippet;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -47,6 +46,7 @@ import com.kang.FloApiServer.domain.storage.Storage;
 import com.kang.FloApiServer.domain.storage.StorageRepository;
 import com.kang.FloApiServer.domain.user.RoleType;
 import com.kang.FloApiServer.domain.user.User;
+import com.kang.FloApiServer.domain.user.UserRepository;
 import com.kang.FloApiServer.web.dto.playsong.PlaySongSaveReqDto;
 import com.kang.FloApiServer.web.dto.storage.StorageSaveDto;
 
@@ -71,8 +71,8 @@ public class FLOApiControllerIntegreTest {
 	@Autowired
 	private PlaySongRepository playSongRepository;
 	
-//	@Autowired  //시큐리티 세션을 어떻게 처리할지 모르겠음.
-//	private UserRepository userRepository;
+	@Autowired  //시큐리티 세션을 어떻게 처리할지 모르겠음.
+	private UserRepository userRepository;
 	
 	@Autowired
 	private StorageRepository storageRepository;
@@ -101,11 +101,14 @@ public class FLOApiControllerIntegreTest {
 		entityManager.createNativeQuery("ALTER TABLE storage AUTO_INCREMENT =1").executeUpdate();
 		entityManager.createNativeQuery("ALTER TABLE song AUTO_INCREMENT =1").executeUpdate();
 		entityManager.createNativeQuery("ALTER TABLE playSong AUTO_INCREMENT =1").executeUpdate();
-			
+		entityManager.createNativeQuery("ALTER TABLE user AUTO_INCREMENT =1").executeUpdate();
+		
+		
 		User user = new User(1, "", "", "", RoleType.USER, null); 
 		session = new MockHttpSession();
 		session.setAttribute("principal", user);
 	}
+	
 	
 
 	@Test
@@ -113,7 +116,10 @@ public class FLOApiControllerIntegreTest {
 		//given(테스트를 하기 위한 준비)
 		PlaySongSaveReqDto playSongSaveReqDto = new PlaySongSaveReqDto();
 		Song song = new Song(1, "있잖아 (ROCK VER.)", "IU (아이유)", CategoryType.DANCE, "lyrics", "2009.04", "IU (아이유) - 있잖아.jpg", "IU (아이유) - 있잖아 (ROCK VER.).mp3");						
-		User user = new User(1, "", "", "", RoleType.USER, null);
+		User user = new User(1, "11111", "11111", "111111", RoleType.USER, null);
+		
+		songRepository.save(song); //SQL Error: 1452 를 해결하기 위해서 먼저 넣음
+		userRepository.save(user);
 		
 		playSongSaveReqDto.setSong(song);
 		playSongSaveReqDto.setUser(user);
@@ -138,10 +144,21 @@ public class FLOApiControllerIntegreTest {
 		int id =1;
 		List<PlaySong> playSongs = new ArrayList<>();
 
-		Song song = new Song(1, "있잖아 (ROCK VER.)", "IU (아이유)", CategoryType.DANCE, "lyrics", "2009.04", "IU (아이유) - 있잖아.jpg", "IU (아이유) - 있잖아 (ROCK VER.).mp3");
-		Song song2 = new Song(2, "마지막처럼", "BLACKPINK", CategoryType.DANCE, "", "2017.06", "BLACKPINK - 마지막처럼.jpg", "BLACKPINK - 마지막처럼.mp3");
-		Song song3 = new Song(3, "Into the I-LAND", "IU (아이유)", CategoryType.DANCE, "", "2020.06", "IU (아이유) - Into the I-LAND.jpg", "IU (아이유) - Into the I-LAND.mp3");
+		Song song = new Song(1, "있잖아 (ROCK VER.)1", "IU (아이유)", CategoryType.DANCE, "lyrics", "2009.04", "IU (아이유) - 있잖아.jpg", "IU (아이유) - 있잖아 (ROCK VER.).mp3");
+		Song song2 = new Song(2, "마지막처럼", "BLACKPINK1", CategoryType.DANCE, "", "2017.06", "BLACKPINK - 마지막처럼.jpg", "BLACKPINK - 마지막처럼.mp3");
+		Song song3 = new Song(3, "Into the I-LAND1", "IU (아이유)", CategoryType.DANCE, "", "2020.06", "IU (아이유) - Into the I-LAND.jpg", "IU (아이유) - Into the I-LAND.mp3");
 		User user = new User(1, "", "", "", RoleType.USER, null);
+		
+		List<Song> songs  = new ArrayList<>();
+		songs.add(song);
+		songs.add(song2);
+		songs.add(song3);
+		
+		songRepository.saveAll(songs);
+		userRepository.save(user);
+		
+		
+		
 		playSongs.add(new PlaySong(1, user, song , null));
 		playSongs.add(new PlaySong(2, user, song2 , null));
 		playSongs.add(new PlaySong(3, user, song3 , null));
@@ -168,10 +185,20 @@ public class FLOApiControllerIntegreTest {
 		Song song2 = new Song(2, "마지막처럼", "BLACKPINK", CategoryType.DANCE, "", "2017.06", "BLACKPINK - 마지막처럼.jpg", "BLACKPINK - 마지막처럼.mp3");
 		Song song3 = new Song(3, "Into the I-LAND", "IU (아이유)", CategoryType.DANCE, "", "2020.06", "IU (아이유) - Into the I-LAND.jpg", "IU (아이유) - Into the I-LAND.mp3");
 		User user = new User(1, "", "", "", RoleType.USER, null);
+		
+			
+		List<Song> songs  = new ArrayList<>();
+		songs.add(song);
+		songs.add(song2);
+		songs.add(song3);
+		
+		songRepository.saveAll(songs); //그래서 집어넣는 거임. 생각보다 junit 테스트가 꼼꼼하게 체크하네..
+		userRepository.save(user);
+		
 		playSongs.add(new PlaySong(1, user, song , null));
 		playSongs.add(new PlaySong(2, user, song2 , null));
 		playSongs.add(new PlaySong(3, user, song3 , null));
-		playSongRepository.saveAll(playSongs);
+		playSongRepository.saveAll(playSongs);  //이거 넣을라면 참조하는 테이블의 칼럼들이 미리 다 생성되어있어야 된다.
 		
 		ResultActions resultAction = mockMvc.perform(delete("/playSong/{id}", id)
 				.accept(MediaType.APPLICATION_JSON_UTF8));

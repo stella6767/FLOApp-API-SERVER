@@ -39,8 +39,6 @@ include::{snippets}/flo-api-controller-integre-test/play-song-save_테스트/res
 
 == 플레이송 삭제 [DELETE]
 
-글 수정
-
 
 include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/curl-request.adoc[]
 
@@ -59,5 +57,77 @@ include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테�
 ==== 응답 바디
 
 include::{snippets}/flo-api-controller-integre-test/delete-play-song-by-id_테스트/response-body.adoc[]
+
+
+== 스토리지 삭제 [DELETE]
+
+
+
+include::{snippets}/flo-api-controller-integre-test/delete-storage-by-id_테스트/curl-request.adoc[]
+
+=== 요청 구조
+
+include::{snippets}/flo-api-controller-integre-test/delete-storage-by-id_테스트/http-request.adoc[]
+
+==== 응답 구조
+
+include::{snippets}/flo-api-controller-integre-test/delete-storage-by-id_테스트/http-response.adoc[]
+
+=== 요청 바디
+
+include::{snippets}/flo-api-controller-integre-test/delete-storage-by-id_테스트/request-body.adoc[]
+
+==== 응답 바디
+
+include::{snippets}/flo-api-controller-integre-test/delete-storage-by-id_테스트/response-body.adoc[]
+
+
+
+== 노래 검색 [GET]
+
+글 수정
+
+
+include::{snippets}/flo-api-controller-integre-test/find-category-song_테스트/curl-request.adoc[]
+
+=== 요청 구조
+
+include::{snippets}/flo-api-controller-integre-test/find-category-song_테스트/http-request.adoc[]
+
+==== 응답 구조
+
+include::{snippets}/flo-api-controller-integre-test/find-category-song_테스트/http-response.adoc[]
+
+=== 요청 바디
+
+include::{snippets}/flo-api-controller-integre-test/find-category-song_테스트/request-body.adoc[]
+
+==== 응답 바디
+
+include::{snippets}/flo-api-controller-integre-test/find-category-song_테스트/response-body.adoc[]
+
+
+
+== 플레이송 찾기 [GET]
+
+
+include::{snippets}/flo-api-controller-integre-test/find-play-song-by-user-id_테스트/curl-request.adoc[]
+
+=== 요청 구조
+
+include::{snippets}/flo-api-controller-integre-test/find-play-song-by-user-id_테스트/http-request.adoc[]
+
+==== 응답 구조
+
+include::{snippets}/flo-api-controller-integre-test/find-play-song-by-user-id_테스트/http-response.adoc[]
+
+=== 요청 바디
+
+include::{snippets}/flo-api-controller-integre-test/find-play-song-by-user-id_테스트/request-body.adoc[]
+
+==== 응답 바디
+
+include::{snippets}/flo-api-controller-integre-test/find-play-song-by-user-id_테스트/response-body.adoc[]
+
 
 

@@ -119,6 +119,24 @@ spring:
 ![image](https://user-images.githubusercontent.com/65489223/114041570-9f141100-98bf-11eb-8f93-cb4c0e54eb11.png)
 
 
+### 단위 테스트
+
+
+![image](https://user-images.githubusercontent.com/65489223/114051867-72182c00-98c8-11eb-9129-259aef9914e1.png)
+
+
+
+### API 문서
+
+![image](https://user-images.githubusercontent.com/65489223/114053017-86105d80-98c9-11eb-9f75-aae67abc95a7.png)
+
+
+
+### Error Log Batch 
+
+![image](https://user-images.githubusercontent.com/65489223/114053630-16e73900-98ca-11eb-96f7-3408e4e196c2.png)
+![image](https://user-images.githubusercontent.com/65489223/114053700-26ff1880-98ca-11eb-96c4-d7da3fb0e3ca.png)
+
 
 
 ### 블로그 주소
@@ -127,14 +145,13 @@ spring:
 <https://blog.naver.com/PostView.nhn?blogId=alsrb9434&logNo=222265727309&categoryNo=35&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=&from=postList&userTopListOpen=true&userTopListCount=5&userTopListManageOpen=false&userTopListCurrentPage=1>
 
 
-
-
 ### 동영상 주소
 
 
 
 
 ### PPT 주소
+
 
 
 
